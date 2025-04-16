@@ -1298,7 +1298,7 @@ textarea {
 
 .cs_fs_22 {
   font-size: 22px;
-  line-height: 1.2em;
+  line-height: 1.6em;
 }
 
 .cs_fs_24 {
@@ -8157,30 +8157,39 @@ a.ui-button:active,
 /*--------------------------------
  Responsive Fix for .cs_style_1 Tabs
  -------------------------------*/
-@media (max-width: 767px) {
+ @media (max-width: 767px) {
   .cs_tab_links.cs_style_1 {
+    display: flex;
+    justify-content: space-between;
     flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden; /* prevent horizontal scroll */
     padding-bottom: 10px;
   }
 
   .cs_tab_links.cs_style_1 li {
-    flex: 0 0 auto;
+    flex: 1 1 33.33%;
+    max-width: 33.33%;
+    text-align: center;
   }
 
   .cs_tab_links.cs_style_1 li a {
-    width: 240px;
-    padding: 20px 16px;
-    font-size: 16px;
+    width: 100%;
+    padding: 12px 8px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .cs_tab_links.cs_style_1 li span {
-    font-size: 16px;
+    font-size: 13px;
+    margin-top: 4px;
   }
 
   .cs_tab_links.cs_style_1 li img {
-    height: 40px;
+    height: 28px;
+    width: auto;
   }
 
   /* Optional: Hide horizontal scrollbar */
@@ -8188,6 +8197,7 @@ a.ui-button:active,
     display: none;
   }
 }
+
 
 
 /*--------------------------------------------------------------
@@ -9480,8 +9490,8 @@ a.ui-button:active,
   }
 }
 .cs_about.cs_style_1 .cs_author_card .cs_author_thumb {
-  width: 93px;
-  height: 93px;
+  width: 225px;
+  height: 225px;
   padding: 6px;
   border: 1px solid var(--accent);
   border-radius: 50%;
@@ -10565,3 +10575,60 @@ footer {
   font-size: 14px;
   color: #555;
 }
+/* Common styles */
+.scrollable-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollable-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-tabs li {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+/* ✅ Mobile: Fit exactly 3 tabs side-by-side without overlap */
+@media (max-width: 576px) {
+  .scrollable-tabs {
+    justify-content: space-between;
+    gap: 0;
+    overflow: hidden;
+    white-space: normal;
+    padding: 0;
+  }
+
+  .scrollable-tabs li {
+    flex: 1 1 33.33%;
+    max-width: 33.33%;
+    padding: 8px 4px;
+    box-sizing: border-box;
+  }
+
+  .scrollable-tabs li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .scrollable-tabs li img {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 4px;
+    object-fit: contain;
+  }
+}
+
+
